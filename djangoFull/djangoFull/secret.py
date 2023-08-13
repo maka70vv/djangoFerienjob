@@ -1,1 +1,0 @@
-sc = 'django-insecure-x%!hen0x1!oj!21au(z&x5gg5%dc8p6n%axo*hyl&r9729)4vr'
