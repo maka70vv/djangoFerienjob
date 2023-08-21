@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FERIENJOB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="short icon" type="text/css" href="https://img.icons8.com/color/48/000000/germany.png"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body>
+{% if request.user.is_authenticated and request.user.is_staff %}
+
+
+    <!-- Header -->
+    <div class="w3-center">
+        <div class="center">
+            <h2>Вы уверены, что заявка была обработана и Вы хотите ее удалить?</h2>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="submit" value="Done" class="floating_button" style="{{ floating_button }}">
+                <a href="/data/" class="floating_button" style="{{ floating_button }}">Назад к заявкам</a>
+            </form>
+        </div>
+    </div>
+
+{% endif %}
+</body>
+</html>

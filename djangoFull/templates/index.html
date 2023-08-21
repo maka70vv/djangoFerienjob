@@ -24,8 +24,18 @@
             <a href="/" class="w3-bar-item w3-button w3-padding-large w3-white">{{ n.home }}</a>
             <a href="/ferienjob"
                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">{{ n.ferienjob }}</a>
-            <a href="/course" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">{{ n.course }}</a>
-            <a href="/contacts" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">{{ n.contacts }}</a>
+            <a href="/course"
+               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">{{ n.course }}</a>
+            <a href="/contacts"
+               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">{{ n.contacts }}</a>
+            {% if request.user.is_authenticated and request.user.is_staff %}
+                <a href="/data"
+               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Заявки</a>
+                <a href="/contact-data"
+               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Обратная связь</a>
+                <a href="/admin"
+               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Панель администратора</a>
+            {% endif %}
         </div>
 
         <!-- Navbar on small screens -->

@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FERIENJOB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="short icon" type="text/css" href="https://img.icons8.com/color/48/000000/germany.png"/>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+</head>
+<body>
+{% if request.user.is_authenticated and request.user.is_staff %}
+
+
+    <!-- Header -->
+    <div class="w3-center">
+        <header class="centered" style="padding:128px 16px">
+            <h1 class="w3-jumbo">Данные для регистрации студентов</h1>
+        </header>
+
+        <div class="w3-center w3-half">
+            {% for i in object_list %}
+                <hr class="hr-shelf">
+                <h2>Имя {{ i.first_name }}</h2>
+                <h2>Фамилия {{ i.last_name }}</h2>
+                <p>Возраст {{ i.age }}</p>
+                <p>E-Mail {{ i.mail }}</p>
+                <p>Уровень немецкого {{ i.level }}</p>
+                <h5>Выбранные услуги</h5>
+                {% if i.ferienjob %}
+                    <p>Ferienjob</p>
+                {% elif i.course %}
+                    <p>Языковой курс</p>
+                {% endif %}
+                <a href="/data/{{ i.id }}/delete" class="floating_button"
+                   style="{{ floating_button }}">Выполнено</a>
+                <hr class="hr-shelf">
+            {% endfor %}
+        </div>
+    </div>
+
+{% endif %}
+</body>
+</html>

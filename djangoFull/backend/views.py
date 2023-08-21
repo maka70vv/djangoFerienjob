@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import ListView, DeleteView
+
 from . import models, forms
 
 
@@ -56,4 +58,39 @@ def success_form(request):
     form_page = models.Form_page.objects.all()
     return render(request, "success_Form.html", {"form_page": form_page})
 
+
+#Form registrate data
+class Data_forms(ListView):
+    template_name = "data_registr.html"
+    queryset = models.Form_registr.objects.all()
+
+    def get_queryset(self):
+        return models.Form_registr.objects.all()
+
+
+#Contact Form data
+class Contact_data(ListView):
+    template_name = "contact_data.html"
+    queryset = models.Contact_form.objects.all()
+
+    def get_queryset(self):
+        return models.Contact_form.objects.all()
+
+#Deleting registrate
+class DataDeleteViewRegistrate(DeleteView):
+    template_name = "delete.html"
+    success_url = "/data/"
+
+    def get_object(self, **kwargs):
+        data_id = self.kwargs.get("id")
+        return get_object_or_404(models.Form_registr, id=data_id)
+
+#Deleting contact
+class DataDeleteViewContacts(DeleteView):
+    template_name = "delete.html"
+    success_url = "/contact-data/"
+
+    def get_object(self, **kwargs):
+        data_id = self.kwargs.get("id")
+        return get_object_or_404(models.Contact_form, id=data_id)
 
