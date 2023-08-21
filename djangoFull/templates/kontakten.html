@@ -27,7 +27,7 @@
             <a href="/course"
                class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">{{ n.course }}</a>
             <a href="/contacts"
-               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3--white">{{ n.contacts }}</a>
+               class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-white">{{ n.contacts }}</a>
         </div>
 
         <!-- Navbar on small screens -->
@@ -50,16 +50,10 @@
         <div class="s4 w3-third">
             <h4>{{ i.title_form }}</h4>
             <p>{{ i.small_title }}</p>
-            <form action="/action_page.php" target="_blank">
-                <p><input class="w3-input w3-border" type="text" placeholder="{{ i.name_placeholder }}" name="Name"
-                          required></p>
-                <p><input class="w3-input w3-border" type="text" placeholder="{{ i.email_placeholder }}" name="Email"
-                          required></p>
-                <p><input class="w3-input w3-border" type="text" placeholder="{{ i.theme_placeholder }}" name="Theme"
-                          required></p>
-                <p><textarea class="w3-input w3-border" placeholder="{{ i.message_placeholder }}" name="Message"
-                             required></textarea></p>
-                <button type="submit" class="w3-button w3-block w3-black">Send</button>
+            <form action="message/" target="_blank" method="post" enctype="multipart/form-data" class="contact-form">
+                {% csrf_token %}
+                {{ contactForm.as_p }}
+                <button type="submit" class="w3-button w3-block w3-black">{{ i.button_form }}</button>
             </form>
         </div>
 
